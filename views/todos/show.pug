@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+    h1= title
+
+    p Ma todo :
+
+    table(border=1)
+        tr
+            th Id
+            td= todo.id
+        tr
+            th Texte
+            td= todo.text

@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+
+  body
+
+    ul#menu_horizontal
+      li
+        a(href='/') Accueil
+      li
+        a(href='/users') Utilisateurs
+      li
+        a(href='/todos') Todos
+      li.right
+        a(href='/users/add') Inscription
+      li.right
+        a(href='/sessions') Connexion
+
+    block content

@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    if (flash)
+        if(flash.errorList)
+            ul
+            - for (var i = 0; i < flash.errorList.length; i++){
+                li= flash.errorList[i]
+            - }
+        if(flash.successList)
+            ul
+            - for (var i = 0; i < flash.successList.length; i++){
+                li= flash.successList[i]
+            - }
+
+    h1= title
+
+    p Ajouter ou editer le todo :
+
+    form(method="post" action= path)
+        table(border=1)
+            tr
+                th Texte :
+                td
+                  input(type="text", name="text", value=todo.text)
+        input(type="submit", value='Envoyer')

@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  h1= title
+
+  p Liste des utilisateurs :
+
+  table(border=1)
+    tr
+        th Id
+        th Pseudo
+        th Email
+        th Prénom
+        th Nom
+        th Actions
+
+    each user in users
+        tr
+            td= user.id
+            td= user.pseudonyme
+            td= user.email
+            td= user.firstname
+            td= user.lastname
+            td
+                ul
+                    li
+                        a(href="/users/" + user.id) Voir
+                    li
+                        a(href="/users/" + user.id + '/edit') Éditer
+                    li
+                        a(href="/users/" + user.id + '?_method=DELETE') Supprimer
+
+  ul.pagination
+    - var nbPage = Math.ceil(count / limit)
+    - for (var i = 0; i < nbPage; i++){
+        li
+              a(href='/users?limit=' + limit + '?offset=' + offset + (i*limit)) Page #{i + 1}
+    - }

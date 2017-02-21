@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+    if (flash)
+        if(flash.errorList)
+            ul
+            - for (var i = 0; i < flash.errorList.length; i++){
+                li= flash.errorList[i]
+            - }
+        if(flash.successList)
+            ul
+            - for (var i = 0; i < flash.successList.length; i++){
+                li= flash.successList[i]
+            - }
+
+    h1= title
+
+    p Editer l'utilisateur :
+
+    form(method="post" action= path)
+        table(border=1)
+            tr
+                th Pseudo :
+                td
+                    input(type="text", name="pseudonyme", value=user.pseudonyme)
+            tr
+                th eMail :
+                td
+                    input(type="email", name="email", value=user.email)
+            tr
+                th Prénom :
+                td
+                    input(type="text", name="firstname", value=user.firstname)
+            tr
+                th Nom :
+                td
+                    input(type="text", name="lastname", value=user.lastname)
+            tr
+                th Mot de passe :
+                td
+                    input(type="password", name="password")
+            tr
+                th Vérification du mot de passe :
+                td
+                    input(type="password", name="password_check")
+        input(type="submit", value='Envoyer')

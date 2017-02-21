@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  h1= title
+
+  p Mes todos :
+
+  a(href="/todos/add") Ajouter un todo
+
+  table(border=1)
+    tr
+        th Checkbox
+        th Id
+        th Texte
+        th Date création
+        th Terminé le
+        th Actions
+
+    each todo in todos
+        tr
+            td
+              if todo.completedAt == 'null' || todo.completedAt == null
+                input(type='checkbox', name='check', onclick='window.location.assign("/todos/'+todo.id+'/check/'+todo.completedAt+'/?_method=PUT")')
+              else
+                input(type='checkbox', name='check', onclick='window.location.assign("/todos/'+todo.id+'/check/'+todo.completedAt+'/?_method=PUT")', checked='')
+            td= todo.id
+            td= todo.text
+            td #{formatDate(todo.createdAt)}
+            if todo.completedAt != null
+              td #{formatDate(todo.completedAt)}
+            else
+              td
+            td
+                ul
+                    li
+                        a(href="/todos/" + todo.id) Voir
+                    li
+                        a(href="/todos/" + todo.id + '/edit') Éditer
+                    li
+                        a(href="/todos/" + todo.id + '?_method=DELETE') Supprimer
+
+  ul.pagination
+    - var nbPage = Math.ceil(count / limit)
+    - for (var i = 0; i < nbPage; i++){
+        li
+            a(href='/todos?limit=' + limit + '?offset=' + offset + (i*limit)) Page #{i + 1}
+    - }
+  -function formatDate(epoch) { var date = new Date(parseInt(epoch)); return date.toLocaleString();};
