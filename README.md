@@ -1,11 +1,9 @@
-#wik-njs-303-skeleton
 
-Simple ExpressJS skeleton.
+#TODO NODE
 
 ## Install
 
-    git clone https://github.com/Tronix117/wik-njs-303-skeleton.git
-    cd wik-njs-303-skeleton
+    git clone https://github.com/MaximeZed/todolist.git
     npm install
 
 ## Usage
