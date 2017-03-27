@@ -4,7 +4,6 @@ const path = require('path')
 // Dépendances 3rd party
 const express = require('express')
     , bodyParser = require('body-parser')
-    , sass = require('node-sass-middleware')
     , methodOverride = require('method-override')
     , session = require('express-session')
     , cookieParser = require('cookie-parser')
@@ -37,14 +36,6 @@ app.use(methodOverride('_method', {methods: ['GET', 'POST']}))
 
 //Midelware cookie-parser
 app.use(cookieParser())
-
-// Préprocesseur sur les fichiers scss -> css
-app.use(sass({
-  src: path.join(__dirname, 'styles'),
-  dest: path.join(__dirname, 'assets', 'css'),
-  prefix: '/css',
-  outputStyle: 'expanded'
-}))
 
 // On sert les fichiers statiques
 app.use(express.static(path.join(__dirname, 'assets')))
